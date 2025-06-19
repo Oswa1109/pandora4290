@@ -257,6 +257,26 @@ const discount1 = parseInt(discount1Clean);
       return;
     }
 
+    if (isNaN(totalFinal)) {
+  Swal.fire({
+    title: '¡Faltan datos!',
+    text: 'Por favor llena todos los campos antes de calcular.',
+    icon: 'error',
+    confirmButtonText: 'OK',
+    background: '#ffe6e6',
+    color: '#000',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    showClass: {
+      popup: 'animate__animated animate__shakeX'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  });
+  return;
+    }
+
 
     // Mostrar resultados abajo también (opcional)
     document.getElementById('resultados').innerHTML = `
