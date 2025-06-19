@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promo 4290</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     label { display: inline-block; width: 220px; }
     input {  border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); border: solid 1px black; font-size: 20px; width: 140px;}
@@ -238,7 +239,19 @@ const discount1 = parseInt(discount1Clean);
    document.getElementById('total-final').textContent = `Total: $${(final1 + final2 + final3).toFixed(2)}`;
 
     if (totalFinal >= 4289 && discount2 >= 0 && discount3 >= 0){
-        alert("Precio adecuado");
+        Swal.fire({
+  title: '¡Precio adecuado!',
+  icon: 'success',
+  confirmButtonText: 'OK',
+  background: '#fff0f5',
+  color: '#333',
+  showClass: {
+    popup: 'animate__animated animate__fadeInDown'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__fadeOutUp'
+  }
+});
       return;
     }
 
