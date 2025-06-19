@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Promo 4290</title>
+  <style>
+    label { display: inline-block; width: 220px; }
+    input {  border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.5); border: solid 1px black; font-size: 20px; width: 140px;}
+    input[type="button"] {
+      background-color: #989898;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 150px;
+      height: 50px;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+
+    input[type="button"]:hover {
+      background-color: rgb(255, 68, 189);
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    body {
+      background: linear-gradient(4deg, rgb(255, 139, 189) 0%, rgba(255, 255, 255, 1) 100%);
+      display: flex;
+      margin: 10px;
+      justify-content: center;
+    }
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .main form {
+      font-size: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .logo {
+      height: 10%;
+    }
+
+
+
+
+    #resultados {
+      width: 500px;
+      background: white;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      font-size: 15px;
+    }
+
+    #resultados p {
+      font-size: 15px;
+    }
+
+    .boton{
+      display: flex;
+      justify-content: center;
+      align-items:  center;
+      gap: 10px;
+
+    }
+
+    .boton > *{
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      color: rgb(0, 0, 0);
+    }
+
+    .row span{
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .row2 span{
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .row3 span{
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .row{
+      background-color: rgba(213, 255, 173, 0.726);
+    }
+
+    .row2{
+      background-color: rgba(203, 163, 255, 0.523);
+    }
+
+    .row3{
+      background-color: rgba(255, 138, 138, 0.411);
+    }
+
+    #discountForm{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #discountForm > *{
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .row, .row1, .row2, .row3{
+  
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      form div label{
+        text-align: center;
+      }
+
+      .boton{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+}
+
+
+  </style>
+</head>
+
+<body>
+<div class="main">
+  <img src="https://logosandtypes.com/wp-content/uploads/2020/07/pandora.svg" alt="logo" class="logo">
+  <h1>PANDORA <br>SANTA FE</h1>
+  <h2>Promo 4290</h2>
+
+  <form id="discountForm">
+    <div class="row">
+      <label for="price1">Precio brazalete:</label>
+      <input type="number" id="price1" required>
+      <span id="discount1-span">| Descuento: --%</span>
+      <span id="final1-span">| Final: $0.00</span>
+    </div>
+
+    <div class="row1">
+      <label for="discount1" style="color: blue">Ingresa un descuento manual (Ej: 50%):</label>
+      <input type="text" id="discount1" required>
+    </div>
+
+    <div class="row2">
+      <label for="price2">Precio charm 1:</label>
+      <input type="number" id="price2" required>
+      <span id="discount2-span">| Descuento: --%</span>
+      <span id="final2-span">| Final: $0.00</span>
+    </div>
+
+    <div class="row3">
+      <label for="price3">Precio charm 2:</label>
+      <input type="number" id="price3" required>
+      <span id="discount3-span">| Descuento: --%</span>
+      <span id="final3-span">| Final: $0.00</span>
+    </div>
+    <div class="boton">
+      <div><input type="button" value="Calcular descuentos" onclick="calcularDescuentos()"></div>
+      <div><span id="total-final"></span></div>
+    </div>
+    
+  </form>
+
+
+<script>
+  function calcularDescuentos() {
+    const price1 = parseFloat(document.getElementById('price1').value);
+  const discount1Input = document.getElementById('discount1').value.trim();
+const discount1Clean = discount1Input.replace(/[^\d]/g, ''); // quita todo lo que no sea número
+const discount1 = parseInt(discount1Clean);
+    const price2 = parseFloat(document.getElementById('price2').value);
+    const price3 = parseFloat(document.getElementById('price3').value);
+
+    if (price1 <= 0 || price2 <= 0 || price3 <= 0) {
+      alert("Los precios deben ser mayores que 0.");
+      return;
+    }
+
+    const discount2 = Math.floor(Math.random() * 101);
+    const final1 = price1 * (100 - discount1) / 100;
+    const final2 = price2 * (100 - discount2) / 100;
+    const totalParcial = final1 + final2;
+    const totalObjetivo = 4290;
+
+    const desiredFinal3 = totalObjetivo - totalParcial;
+    const exactDiscount3 = 100 - (desiredFinal3 * 100 / price3);
+    let discount3 = Math.ceil(exactDiscount3);
+    const final3 = price3 * (100 - discount3) / 100;
+    const totalFinal = final1 + final2 + final3;
+    // Mostrar resultados en spans junto a inputs
+    // Brazalete
+    const discount1Span = document.getElementById('discount1-span');
+    discount1Span.textContent = `| Descuento: ${discount1}%`;
+    discount1Span.style.color = (discount1 < 0 || discount1 > 100) ? 'red' : 'green';
+    document.getElementById('final1-span').textContent = `| Final: $${final1.toFixed(2)}`;
+
+    // Charm 1
+    const discount2Span = document.getElementById('discount2-span');
+    discount2Span.textContent = `| Descuento: ${discount2}%`;
+    discount2Span.style.color = (discount2 < 0 || discount2 > 100) ? 'red' : 'green';
+    document.getElementById('final2-span').textContent = `| Final: $${final2.toFixed(2)}`;
+
+    // Charm 2
+    const discount3Span = document.getElementById('discount3-span');
+    discount3Span.textContent = `| Descuento: ${discount3}%`;
+    discount3Span.style.color = (discount3 < 0 || discount3 > 100) ? 'red' : 'green';
+    document.getElementById('final3-span').textContent = `| Final: $${final3.toFixed(2)}`;
+
+
+   document.getElementById('total-final').textContent = `Total: $${(final1 + final2 + final3).toFixed(2)}`;
+
+    if (totalFinal >= 4289 && discount2 >= 0 && discount3 >= 0){
+        alert("Precio adecuado");
+      return;
+    }
+
+
+    // Mostrar resultados abajo también (opcional)
+    document.getElementById('resultados').innerHTML = `
+      <p>Descuento <b>brazalete</b>: <b>${discount1}%</b> (Precio final: ${final1.toFixed(2)})</p>
+      <p>Descuento charm 1 <b>(${price2})</b>: <b>${discount2}%</b> (Precio final: ${final2.toFixed(2)})</p>
+      <p>Descuento charm 2 <b>(${price3})</b>: <b>${discount3}%</b> (Precio final: ${final3.toFixed(2)})</p>
+      <p>Total final: ${(final1 + final2 + final3).toFixed(2)}</p><br>
+      <p style="color: red">Si te sale porcentaje negativo, calcula de nuevo</p>
+      <p style="color: red">Si te sale un porcentaje mayor al 100%, calcula de nuevo</p>
+    `;
+    
+
+  }
+</script>
+</body>
+</html>
